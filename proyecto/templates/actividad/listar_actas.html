@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link href="{% static 'mie/css/listar_miembros.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{% static 'tables/css/bootstrap.min.css' %}"  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
+<link rel="stylesheet" href="{% static 'tables/css/dataTables.bootstrap5.min.css' %}"/>
+
+{% endblock stylesheets %}
+
+{% block title %} Actas Matrimoniales{% endblock %}
+{% block background %}{% static 'act/img/actas.jpg' %}{% endblock %}
+
+{% block headers %}<h1>Lista de Actas Matrimoniales </h1>{% endblock %}
+
+{% block content %}
+<div class="row ml-0 mb-3">
+    <a href="{% url 'actividades:actas' %}">
+        <button type="button" class="btn btn-info font-weight-bold">
+            <i class="fas fa-long-arrow-alt-left mr-2"></i>
+            AGREGAR NUEVA ACTA
+        </button>
+    </a>
+</div>
+<div class="container md-4">
+    <div class="row">
+        <div class="col-sm-12 col-sm-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+                <table id="datatable-programmers" class="table">
+                    <thead>
+                    <tr>
+                        <th style="width:1%; text-align: center; vertical-align: middle;">NO</th>
+                        <th style="width:5%; text-align: center; vertical-align: middle;">Titulo</th>
+                        <th style="width:5%; text-align: center; vertical-align: middle;">Fecha</th>
+                        <th style="width:7%; text-align: center; vertical-align: middle;">Sheij</th>
+                        <th style="width:7%; text-align: center; vertical-align: middle;">Novio</th>
+                        <th style="width:7%; text-align: center; vertical-align: middle;">Novia</th>
+                        <th style="width:7%; text-align: center; vertical-align: middle;">Guardian</th>
+                        <th style="width:7%; text-align: center; vertical-align: middle;">Testigos</th>
+                    </tr>
+                    </thead>
+                    <tbody id ="tableBody_programmers">
+                        {% for programmer in programmers %}
+                            <tr>
+                                <td>{{ programmer.titulo }}</td>
+                                <td>{{ programmer.fecha }}</td>
+                                <td>{{ programmer.sheij }}</td>
+                                <td>{{ programmer.novio }}</td>
+                                <td>{{ programmer.novia }}</td>
+                                <td>{{ programmer.guardian }}</td>
+                                <td>{{ programmer.testigos }}</td>                   
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="{% static 'tables/js/table.js' %}"></script> 
+<script src="{% static 'tables/js/dataTables.bootstrap5.min.js' %}"integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="{% static 'tables/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'tables/js/jquery-3.7.0.js' %}"></script>
+<script src="{% static 'tables/js/jquery.dataTables.min.js' %}"></script>
+<script>
+     var listPrograUrl = "{% url 'actividades:list_progra' %}"; 
+</script>
+{% endblock javascripts %}
+
+
+
+
+
